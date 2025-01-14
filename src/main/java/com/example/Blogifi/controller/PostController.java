@@ -11,18 +11,22 @@ import java.util.Collection;
 @RequestMapping("/posts")
 public class PostController {
 
+    // AutoWired will Help to use the IOC (inversion of Control) i.e. Spring container objects direct binding to this object
+    // instead of calling Post Constructor Post(its Parameters)
+    // ex. new Post(int id, String title, String desc, LinkedHashSet<String> tags)
+
    @Autowired
    PostService postService;
 
     @GetMapping("")
     public Collection<Post> getAllPosts(){
-        return postService.getAll();
 //        return "All Posts";
+        return postService.getAll();
     }
 
     @PostMapping("")
     public String createPosts(@RequestBody Post post){
-        return postService.create(post);
 //        return "Posts Created";
+        return postService.create(post);
     }
 }
