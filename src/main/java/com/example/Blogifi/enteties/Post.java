@@ -9,9 +9,11 @@ public class Post {
     private String desc;
     private LinkedHashSet<String> tags;
 
+    //Default Constructor
     public Post() {
     }
 
+    //Parameterized Constructor
     public Post(int id, String title, String desc, LinkedHashSet<String> tags) {
         this.id = id;
         this.title = title;
@@ -19,6 +21,7 @@ public class Post {
         this.tags = tags;
     }
 
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -51,6 +54,7 @@ public class Post {
         this.tags = tags;
     }
 
+    //Override toString method to Object Parameters instead of Object ID
     @Override
     public String toString() {
         return "Post{" +
