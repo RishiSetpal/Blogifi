@@ -1,5 +1,7 @@
-package com.example.Blogifi.controller;
+package com.example.Blogifi.controllers;
 
+import com.example.Blogifi.dtos.postDto.PostRequestDto;
+import com.example.Blogifi.dtos.postDto.PostResponseDto;
 import com.example.Blogifi.enteties.Post;
 import com.example.Blogifi.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/posts")
@@ -26,18 +29,19 @@ public class PostController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Collection<Post>> getAllPosts(){
+    public ResponseEntity<List<Post>> getAllPosts(){
 //        return "All Posts";
 //        return postService.getAll();
-        return new ResponseEntity<Collection<Post>>(postService.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Post>>(postService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<String> createPosts(@RequestBody Post post){
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto){
 //        return "Posts Created";
-        postService.create(post);
+//        postService.create(post);
 //        return "Post Created Successfully";
-        return new ResponseEntity<String>("Post Created Successfully",HttpStatus.CREATED);
+        Post postResponse=postService.createPost(postService.ConvertToPost(postRequestDto));
+        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse,"Post Created Successfully "), HttpStatus.CREATED);
     }
 
 //    PathParam - /@PathVarible
@@ -61,13 +65,13 @@ public class PostController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<String> UpdatePartialPostById(@PathVariable int id,@RequestBody Post post ){
+    public ResponseEntity<PostResponseDto> UpdatePartialPostById(@PathVariable int id,@RequestBody PostRequestDto postRequestDto ){
         Post oldpost=postService.getpost(id);
-        oldpost.setTitle(post.getTitle() !=null ? post.getTitle():oldpost.getTitle());
-        oldpost.setDesc(post.getDesc() !=null ? post.getTitle() :oldpost.getDesc());
+        oldpost.setTitle(postRequestDto.getTitle() !=null ? postRequestDto.getTitle():oldpost.getTitle());
+        oldpost.setDescription(postRequestDto.getDescription() !=null ? postRequestDto.getTitle() :oldpost.getDescription());
 //        oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
-        postService.Update(id,oldpost);
-        return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED);
+        Post postResponse=postService.Update(id,oldpost);
+        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse,"Post Updated Successfully"),HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
