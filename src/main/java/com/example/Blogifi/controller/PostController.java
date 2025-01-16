@@ -3,6 +3,8 @@ package com.example.Blogifi.controller;
 import com.example.Blogifi.enteties.Post;
 import com.example.Blogifi.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -20,47 +22,58 @@ public class PostController {
     final private PostService postService;
 
     PostController(PostService postService){
-        this.postService=postService;
+    this.postService=postService;
     }
 
     @GetMapping("")
-    public Collection<Post> getAllPosts(){
+    public ResponseEntity<Collection<Post>> getAllPosts(){
 //        return "All Posts";
-        return postService.getAll();
+//        return postService.getAll();
+        return new ResponseEntity<Collection<Post>>(postService.getAll(), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public String createPosts(@RequestBody Post post){
+    public ResponseEntity<String> createPosts(@RequestBody Post post){
 //        return "Posts Created";
         postService.create(post);
-        return "Post Created Successfully";
+//        return "Post Created Successfully";
+        return new ResponseEntity<String>("Post Created Successfully",HttpStatus.CREATED);
     }
 
+//    PathParam - /@PathVarible
     @GetMapping("/{id}")
-    public Post GetPostById(@PathVariable int id){
-        return postService.getpost(id);
+    public ResponseEntity<Post> GetPostById(@PathVariable int id){
+        return new ResponseEntity<Post>(postService.getpost(id), HttpStatus.CREATED);
     }
 
+//    QueryParam - @
     @PutMapping("/{id}")
-    public String UpdatePostById(@PathVariable int id, @RequestBody Post post){
+    public ResponseEntity<String> UpdatePostById(@PathVariable int id, @RequestBody Post post){
         postService.Update(id,post);
-        return "Post Updated Successfully";
+        return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED );
+    }
+
+//    Additional using QueryParam - ?id=@RequestParam
+    @PutMapping
+    public ResponseEntity<String> UpdatePostByIdQuery(@RequestParam int id, @RequestBody Post post) {
+        postService.Update(id, post);
+        return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
-    public String UpdatePartialPostById(@PathVariable int id,@RequestBody Post post ){
+    public ResponseEntity<String> UpdatePartialPostById(@PathVariable int id,@RequestBody Post post ){
         Post oldpost=postService.getpost(id);
         oldpost.setTitle(post.getTitle() !=null ? post.getTitle():oldpost.getTitle());
         oldpost.setDesc(post.getDesc() !=null ? post.getTitle() :oldpost.getDesc());
-        oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
+//        oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
         postService.Update(id,oldpost);
-        return "Post Updated Successfully";
+        return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteById(@PathVariable int id){
+    public ResponseEntity<?> deleteById(@PathVariable int id){
         postService.delete(id);
-        return "Post Deleted Successfully";
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

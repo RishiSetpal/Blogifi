@@ -12,8 +12,8 @@ public class PostService {
 
     LinkedHashMap<Integer, Post> posts = new LinkedHashMap<>(
             Map.of(
-                    2, new Post(2, "java", "java Desc", new LinkedHashSet<>(Set.of("spring", "java developer", "it"))),
-                    1, new Post(1, "python", "py Desc", new LinkedHashSet<>(Set.of("Python developer", "it")))
+                    2, new Post(2, "java", "java Desc"),
+                    1, new Post(1, "python", "py Desc")
             )
     );
 
