@@ -3,13 +3,16 @@ package com.example.Blogifi.services;
 import com.example.Blogifi.dtos.postDto.PostRequestDto;
 import com.example.Blogifi.dtos.postDto.PostResponseDto;
 import com.example.Blogifi.enteties.Post;
+import com.example.Blogifi.enteties.Tag;
 import com.example.Blogifi.repositories.PostRepository;
+import com.example.Blogifi.repositories.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -21,11 +24,44 @@ public class PostService {
 //            )
 //    );
 
+//    Dependency Injection
+//    1. Field Injection
+//    2. Setter Injection
+//    3. Interface Injection
+//    4. Constructor Injection
+
+// ToDo
+//    Query Look
+//    Projection
+
+    // Constructor Injection
     @Autowired
-    PostRepository postRepository;
+    final private PostRepository postRepository;
+    @Autowired
+    final private TagRepository tagRepository;
+
+    public PostService(PostRepository postRepository, TagRepository tagRepository) {
+        this.postRepository = postRepository;
+        this.tagRepository = tagRepository;
+    }
 
     public Post createPost(Post post) {
 //        posts.put(post.getId(), post); //Returns void
+//        return postRepository.save(post);
+
+        // if tag is not present, Save inside tagRepository
+        Set<Tag> persistedTags = new HashSet<>(); // Not Needed as we are not changing Tags
+        for (Tag tag : post.getTags()) {
+            Tag persistedTag = tagRepository.findByName(tag.getName());
+            // if tag is not present, Save inside tagRepository
+            // also update the Value of persistedTag
+            if (persistedTag == null) {
+                persistedTag = tagRepository.save(tag);
+            }
+            // directly use persistedTag value
+            persistedTags.add(persistedTag);
+        }
+         post.setTags(persistedTags); // Not Needed as we are not changing Tags
         return postRepository.save(post);
     }
 
@@ -34,16 +70,16 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public Post getpost(int id){
+    public Post getpost(int id) {
 //        Post post= posts.get(id);
 //        if (post==null){
 //            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"User with Id " + id+" Not Found");
 //        }
 //        return post;
-        return postRepository.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"User With " +id+ "Not Found"));
+        return postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User With " + id + "Not Found"));
     }
 
-    public Post Update(int id,Post post){
+    public Post Update(int id, Post post) {
         getpost(id);
         post.setId(id);
 //        posts.put(post.getId(),post); // Returns void
@@ -51,21 +87,42 @@ public class PostService {
 
     }
 
-    public void delete(int id){
+    public void delete(int id) {
         getpost(id);
 //        posts.remove(id);
         postRepository.deleteById(id);
     }
 
-    public Post ConvertToPost(PostRequestDto postRequestDto){
-        Post post= new Post();
-        post.setTitle(postRequestDto.getTitle());
-        post.setDescription(postRequestDto.getDescription());
-        return post;
+    public Post ConvertToPost(PostRequestDto postRequestDto) {
+//        Post post= new Post();
+//        post.setTitle(postRequestDto.getTitle());
+//        post.setDescription(postRequestDto.getDescription());
+//        return post;
+        return new Post(
+                0,
+                postRequestDto.getTitle(),
+                postRequestDto.getDescription(),
+                postRequestDto.getTags()
+                        .stream()
+                        .map(tag -> new Tag(tag.toLowerCase()))
+                        //.map(Tag::new) // Short hand Lambda Expression
+                        .collect(
+                                Collectors.toSet())
+        );
     }
 
-    public PostResponseDto ConvertToPostResponse(Post post, String message){
-        return new PostResponseDto(post.getId(), post.getTitle(), post.getDescription(), message);
+    public PostResponseDto ConvertToPostResponse(Post post, String message) {
+        return new PostResponseDto(
+                post.getId(),
+                post.getTitle(),
+                post.getDescription(),
+                post.getTags()
+                        .stream()
+                        .map(tag -> tag.getName())
+                        //.map(Tag::getName) //[Improved/Same] Short hand Lambda Expression
+                        .collect(Collectors.toSet()),
+                message
+        );
     }
 
 }

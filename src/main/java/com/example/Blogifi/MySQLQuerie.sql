@@ -10,5 +10,7 @@ USE blogifidb;
 
 SHOW TABLES;
 SELECT * FROM posts;
+SELECT * FROM tags;
+SELECT * FROM posts_tags;
 
 
