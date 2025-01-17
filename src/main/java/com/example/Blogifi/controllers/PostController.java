@@ -3,6 +3,7 @@ package com.example.Blogifi.controllers;
 import com.example.Blogifi.dtos.postDto.PostRequestDto;
 import com.example.Blogifi.dtos.postDto.PostResponseDto;
 import com.example.Blogifi.enteties.Post;
+import com.example.Blogifi.enteties.Tag;
 import com.example.Blogifi.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -79,7 +81,14 @@ public class PostController {
         Post oldpost = postService.getpost(id);
         oldpost.setTitle(postRequestDto.getTitle() != null ? postRequestDto.getTitle() : oldpost.getTitle());
         oldpost.setDescription(postRequestDto.getDescription() != null ? postRequestDto.getTitle() : oldpost.getDescription());
-        // oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
+//         oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
+        oldpost.setTags(postRequestDto.getTags() !=null
+                ?
+                    postRequestDto.getTags()
+                            .stream()
+                            .map(name-> new Tag(name))
+                            .collect(Collectors.toSet())
+                : oldpost.getTags());
         Post postResponse = postService.Update(id, oldpost);
         return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
     }

@@ -50,18 +50,29 @@ public class PostService {
 //        return postRepository.save(post);
 
         // if tag is not present, Save inside tagRepository
-        Set<Tag> persistedTags = new HashSet<>(); // Not Needed as we are not changing Tags
-        for (Tag tag : post.getTags()) {
-            Tag persistedTag = tagRepository.findByName(tag.getName());
-            // if tag is not present, Save inside tagRepository
-            // also update the Value of persistedTag
-            if (persistedTag == null) {
-                persistedTag = tagRepository.save(tag);
-            }
-            // directly use persistedTag value
-            persistedTags.add(persistedTag);
-        }
-        post.setTags(persistedTags); // Not Needed as we are not changing Tags
+        // Set<Tag> persistedTags = new HashSet<>();
+        // for (Tag tag : post.getTags()) {
+        //    Tag persistedTag = tagRepository.findByName(tag.getName());
+        //    // if tag is not present, Save inside tagRepository
+        //    // also update the Value of persistedTag
+        //    if (persistedTag == null) {
+        //        persistedTag = tagRepository.save(tag);
+        //    }
+        //    // directly use persistedTag value
+        //    persistedTags.add(persistedTag);
+        // }
+
+        //Using Stream Updating Tags in Tags Table
+        Set<Tag> persistedTags =
+                post.getTags()
+                        .stream()
+                        .map(tag -> {
+                                    Tag persist = tagRepository.findByName(tag.getName());
+                                    return persist != null ? persist : tagRepository.save(tag);
+                                }
+                        )
+                        .collect(Collectors.toSet());
+        post.setTags(persistedTags);
         return postRepository.save(post);
     }
 
@@ -83,8 +94,17 @@ public class PostService {
         getpost(id);
         post.setId(id);
 //        posts.put(post.getId(),post); // Returns void
+        Set<Tag> persistedTags =
+                post.getTags()
+                        .stream()
+                        .map(tag -> {
+                                    Tag persist = tagRepository.findByName(tag.getName());
+                                    return persist != null ? persist : tagRepository.save(tag);
+                                }
+                        )
+                        .collect(Collectors.toSet());
+        post.setTags(persistedTags);
         return postRepository.save(post);
-
     }
 
     public void delete(int id) {
