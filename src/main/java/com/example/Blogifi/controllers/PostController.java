@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/posts")
@@ -29,35 +30,44 @@ public class PostController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<Post>> getAllPosts() {
-//        return "All Posts";
-//        return postService.getAll();
-        return new ResponseEntity<List<Post>>(postService.getAll(), HttpStatus.OK);
+    public ResponseEntity<List<PostResponseDto>> getAllPosts() {
+        // return "All Posts";
+        // return postService.getAll();
+        // return new ResponseEntity<List<Post>>(postService.getAll(), HttpStatus.OK); // Returns List of Posts
+        // This will Return List ResponseDto
+        return new ResponseEntity<List<PostResponseDto>>(
+                postService.getAll()
+                        .stream()
+                        .map(post -> postService.ConvertToPostResponse(post))
+                        .collect(Collectors.toList()),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping("")
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
-//        return "Posts Created";
-//        postService.create(post);
-//        return "Post Created Successfully";
+        // return "Posts Created";
+        // postService.create(post);
+        // return "Post Created Successfully";
         Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto));
         return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
     }
 
-    //    PathParam - /@PathVarible
+    // PathParam - /@PathVarible
     @GetMapping("/{id}")
-    public ResponseEntity<Post> GetPostById(@PathVariable int id) {
-        return new ResponseEntity<Post>(postService.getpost(id), HttpStatus.CREATED);
+    public ResponseEntity<PostResponseDto> GetPostById(@PathVariable int id) {
+        // return new ResponseEntity<Post>(postService.getpost(id), HttpStatus.CREATED); // Previously it was Returning Post
+        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postService.getpost(id)), HttpStatus.CREATED);
     }
 
-    //    QueryParam - @
+    // QueryParam - @
     @PutMapping("/{id}")
     public ResponseEntity<String> UpdatePostById(@PathVariable int id, @RequestBody Post post) {
         postService.Update(id, post);
         return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED);
     }
 
-    //    Additional using QueryParam - ?id=@RequestParam
+    // Additional using QueryParam - ?id=@RequestParam
     @PutMapping
     public ResponseEntity<String> UpdatePostByIdQuery(@RequestParam int id, @RequestBody Post post) {
         postService.Update(id, post);
@@ -69,7 +79,7 @@ public class PostController {
         Post oldpost = postService.getpost(id);
         oldpost.setTitle(postRequestDto.getTitle() != null ? postRequestDto.getTitle() : oldpost.getTitle());
         oldpost.setDescription(postRequestDto.getDescription() != null ? postRequestDto.getTitle() : oldpost.getDescription());
-//        oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
+        // oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
         Post postResponse = postService.Update(id, oldpost);
         return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
     }
