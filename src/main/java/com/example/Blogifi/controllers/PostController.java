@@ -41,7 +41,7 @@ public class PostController {
 //        postService.create(post);
 //        return "Post Created Successfully";
         Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto));
-        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse, "Post Created Successfully "), HttpStatus.CREATED);
+        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
     }
 
     //    PathParam - /@PathVarible
@@ -71,7 +71,7 @@ public class PostController {
         oldpost.setDescription(postRequestDto.getDescription() != null ? postRequestDto.getTitle() : oldpost.getDescription());
 //        oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
         Post postResponse = postService.Update(id, oldpost);
-        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse, "Post Updated Successfully"), HttpStatus.CREATED);
+        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")

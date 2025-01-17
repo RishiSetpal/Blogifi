@@ -111,7 +111,7 @@ public class PostService {
         );
     }
 
-    public PostResponseDto ConvertToPostResponse(Post post, String message) {
+    public PostResponseDto ConvertToPostResponse(Post post) {
         return new PostResponseDto(
                 post.getId(),
                 post.getTitle(),
@@ -120,8 +120,7 @@ public class PostService {
                         .stream()
                         .map(tag -> tag.getName())
                         //.map(Tag::getName) //[Improved/Same] Short hand Lambda Expression
-                        .collect(Collectors.toSet()),
-                message
+                        .collect(Collectors.toSet())
         );
     }
 
