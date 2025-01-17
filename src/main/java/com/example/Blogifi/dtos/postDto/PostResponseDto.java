@@ -14,5 +14,4 @@ public class PostResponseDto {
     private String title;
     private String Description;
     private Set<String> tags;
-    private String message;
 }
