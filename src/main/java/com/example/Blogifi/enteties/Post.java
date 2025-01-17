@@ -14,7 +14,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "posts")
+@Entity(name = "posts") // Creates posts table if it is not created
 public class Post {
 
     @Id // Primary key

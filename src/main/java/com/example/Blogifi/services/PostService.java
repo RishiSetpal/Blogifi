@@ -61,7 +61,7 @@ public class PostService {
             // directly use persistedTag value
             persistedTags.add(persistedTag);
         }
-         post.setTags(persistedTags); // Not Needed as we are not changing Tags
+        post.setTags(persistedTags); // Not Needed as we are not changing Tags
         return postRepository.save(post);
     }
 
