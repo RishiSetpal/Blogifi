@@ -73,6 +73,20 @@ public class PostService {
                         )
                         .collect(Collectors.toSet());
         post.setTags(persistedTags);
+
+        /**
+         * I thought
+         * To just add Tag if the Tag is not Present in Tag Table (we don't need to get the Tags and set the same);
+         post.getTags()
+         .forEach(tag -> {
+         Tag persist = tagRepository.findByName(tag.getName());
+         if (persist == null) tagRepository.save(tag);
+         }
+         );
+         * Need to Update Tag(id of Old persisted Tag //or else it will create a new Tag)
+         * This Above Code in comment, won't work, as it will not use Old ID to keep the data same
+         */
+
         return postRepository.save(post);
     }
 
@@ -108,8 +122,19 @@ public class PostService {
     }
 
     public void delete(int id) {
-        getpost(id);
+//        getpost(id);
 //        posts.remove(id);
+//        getpost(id);
+        // Before Deleting post we need to delete its Reference
+        // Finding Post by ID
+        Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
+        // Setting Tags to Empty Set so its References are Removed
+        post.setTags(new HashSet<>());
+        postRepository.save(post); // This will Remove References
+
+        // If we Directly Delete by ID then
+        // Case 1: No Other Reference then it will Delete it from tags and posts_tags Table,
+        // Case 2: Other References are Present, then  while Deleting it from tags Table, it will throw an Exception that Other References are Present
         postRepository.deleteById(id);
     }
 

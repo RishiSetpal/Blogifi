@@ -82,7 +82,7 @@ public class PostController {
         oldpost.setTitle(postRequestDto.getTitle() != null ? postRequestDto.getTitle() : oldpost.getTitle());
         oldpost.setDescription(postRequestDto.getDescription() != null ? postRequestDto.getTitle() : oldpost.getDescription());
 //         oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
-        oldpost.setTags(postRequestDto.getTags() !=null
+        oldpost.setTags(!postRequestDto.getTags().isEmpty()
                 ?
                     postRequestDto.getTags()
                             .stream()
