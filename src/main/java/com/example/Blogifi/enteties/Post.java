@@ -15,6 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "posts") // Creates posts table if it is not created
+@NamedEntityGraph(name = "Post.tags", attributeNodes = @NamedAttributeNode("tags"))
 public class Post {
 
     @Id // Primary key
