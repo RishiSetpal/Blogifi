@@ -138,6 +138,14 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
+    // Adding More QueryLookup getByPropertyName
+    public List<Post> getByTitle(String title) {
+        return postRepository.findByTitle(title);
+    }
+    public List<Post> getByTagName(String tagName) {
+        return postRepository.findByTagsName(tagName);
+    }
+
     public Post ConvertToPost(PostRequestDto postRequestDto) {
 //        Post post= new Post();
 //        post.setTitle(postRequestDto.getTitle());

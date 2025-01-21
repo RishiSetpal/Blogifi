@@ -84,10 +84,10 @@ public class PostController {
 //         oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
         oldpost.setTags(!postRequestDto.getTags().isEmpty()
                 ?
-                    postRequestDto.getTags()
-                            .stream()
-                            .map(name-> new Tag(name))
-                            .collect(Collectors.toSet())
+                postRequestDto.getTags()
+                        .stream()
+                        .map(name -> new Tag(name))
+                        .collect(Collectors.toSet())
                 : oldpost.getTags());
         Post postResponse = postService.Update(id, oldpost);
         return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
@@ -98,5 +98,23 @@ public class PostController {
         postService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+
+    //Tags can be Get From Tag Repositories ? but wont be able to get post
+    @GetMapping("/title")
+    public ResponseEntity<List<PostResponseDto>> getPostByTitle(@RequestParam String value) {
+        return new ResponseEntity<List<PostResponseDto>>(
+                postService.getByTitle(value).stream().map(post -> postService.ConvertToPostResponse(post)).collect(Collectors.toList()),
+                HttpStatus.OK
+        );
+    }
+    @GetMapping("/tag")
+    public ResponseEntity<List<PostResponseDto>> getPostByTagName(@RequestParam String value) {
+        return new ResponseEntity<List<PostResponseDto>>(
+                postService.getByTagName(value).stream().map(post -> postService.ConvertToPostResponse(post)).collect(Collectors.toList()),
+                HttpStatus.OK
+        );
+    }
+
 
 }
