@@ -140,7 +140,9 @@ public class PostService {
 
     // Adding More QueryLookup getByPropertyName
     public List<Post> getByTitle(String title) {
-        return postRepository.findByTitle(title);
+        // return postRepository.findByTitle(title);
+        return postRepository.findByTitleContaining(title);
+        // return postRepository.findByTitleNative(title);
     }
     public List<Post> getByTagName(String tagName) {
         return postRepository.findByTagsName(tagName);
