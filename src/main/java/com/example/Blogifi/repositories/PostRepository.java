@@ -10,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface PostRepository extends JpaRepository<Post, Integer> {
+
+    // Using this EntityGraph So the Query get optimized
     @EntityGraph(value = "Post.tags")
     List<Post> findByTitle(String title);
 
@@ -22,6 +24,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     //@Query("SELECT p FROM posts p WHERE p.title = :title")
     //List<Post> findByTitleContaining(@Param("title") String title);
+    @EntityGraph(value = "Post.tags")
     @Query("SELECT p FROM posts p WHERE p.title LIKE %:title%")
     List<Post> findByTitleContaining(@Param("title") String title);
 
