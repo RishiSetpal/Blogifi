@@ -66,12 +66,13 @@ public class PostService {
         Set<Tag> persistedTags =
                 post.getTags()
                         .stream()
-                        .map(tag -> {
-                                    Tag persist = tagRepository.findByName(tag.getName());
-                                    return persist != null ? persist : tagRepository.save(tag);
-                                }
-                        )
-                        .collect(Collectors.toSet());
+                        .map(tag ->
+                                //{
+                                //    Tag persist = tagRepository.findByName(tag.getName());
+                                //    return persist != null ? persist : tagRepository.save(tag);
+                                //}
+                                tagRepository.findByName(tag.getName()).orElseGet(()->tagRepository.save(tag))
+                        ).collect(Collectors.toSet());
         post.setTags(persistedTags);
 
         /**
@@ -112,8 +113,9 @@ public class PostService {
                 post.getTags()
                         .stream()
                         .map(tag -> {
-                                    Tag persist = tagRepository.findByName(tag.getName());
-                                    return persist != null ? persist : tagRepository.save(tag);
+                                    //Tag persist = tagRepository.findByName(tag.getName());
+                                    //return persist != null ? persist : tagRepository.save(tag);
+                                    return tagRepository.findByName(tag.getName()).orElseGet(() -> tagRepository.save(tag));
                                 }
                         )
                         .collect(Collectors.toSet());
@@ -144,6 +146,7 @@ public class PostService {
         return postRepository.findByTitleContaining(title);
         // return postRepository.findByTitleNative(title);
     }
+
     public List<Post> getByTagName(String tagName) {
         return postRepository.findByTagsName(tagName);
     }
