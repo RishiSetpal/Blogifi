@@ -1,10 +1,15 @@
 package com.example.Blogifi.enteties;
 
+import com.example.Blogifi.configuration.AuditingConfiguration;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -16,6 +21,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity(name = "posts") // Creates posts table if it is not created
 @NamedEntityGraph(name = "Post.tags", attributeNodes = @NamedAttributeNode("tags"))
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
 
     @Id // Primary key
@@ -32,5 +38,12 @@ public class Post {
             inverseJoinColumns = {@JoinColumn(name = "tag_id")} // Column Name: tag_id
     )
     private Set<Tag> tags = new HashSet<>();
+
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdDateTime;
+
+    @LastModifiedDate
+    private LocalDateTime lastModifiedDateTime;
 
 }

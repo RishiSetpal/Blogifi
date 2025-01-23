@@ -156,29 +156,46 @@ public class PostService {
 //        post.setTitle(postRequestDto.getTitle());
 //        post.setDescription(postRequestDto.getDescription());
 //        return post;
-        return new Post(
-                0,
-                postRequestDto.getTitle(),
-                postRequestDto.getDescription(),
-                postRequestDto.getTags()
+
+//        return new Post(
+//                0,
+//                postRequestDto.getTitle(),
+//                postRequestDto.getDescription(),
+//                postRequestDto.getTags()
+//                        .stream()
+//                        .map(tag -> new Tag(tag.toLowerCase()))
+//                        //.map(Tag::new) // Short hand Lambda Expression
+//                        .collect(
+//                                Collectors.toSet())
+//        );
+        Post post= new Post();
+        post.setTitle(postRequestDto.getTitle());
+        post.setDescription(postRequestDto.getDescription());
+        post.setTags(postRequestDto.getTags()
                         .stream()
                         .map(tag -> new Tag(tag.toLowerCase()))
-                        //.map(Tag::new) // Short hand Lambda Expression
-                        .collect(
-                                Collectors.toSet())
-        );
+                        .collect(Collectors.toSet()));
+        return post;
     }
 
     public PostResponseDto ConvertToPostResponse(Post post) {
+//        return new PostResponseDto(
+//                post.getId(),
+//                post.getTitle(),
+//                post.getDescription(),
+//                post.getTags()
+//                        .stream()
+//                        .map(tag -> tag.getName())
+//                        //.map(Tag::getName) //[Improved/Same] Short hand Lambda Expression
+//                        .collect(Collectors.toSet())
+//        );
         return new PostResponseDto(
                 post.getId(),
                 post.getTitle(),
                 post.getDescription(),
-                post.getTags()
-                        .stream()
-                        .map(tag -> tag.getName())
-                        //.map(Tag::getName) //[Improved/Same] Short hand Lambda Expression
-                        .collect(Collectors.toSet())
+                post.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
+                post.getCreatedDateTime(),
+                post.getLastModifiedDateTime()
         );
     }
 
