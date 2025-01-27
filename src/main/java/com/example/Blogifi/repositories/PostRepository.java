@@ -31,5 +31,12 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query(value = "SELECT * FROM posts WHERE title LIKE: %?1%", nativeQuery = true)
     List<Post> findByTitleNative(String title);
 
+    @EntityGraph(value = "Post.tags")
+    @Query("SELECT DISTINCT p FROM posts p LEFT JOIN p.tags t " +
+            "WHERE LOWER(p.title) LIKE LOWER(CONCAT('%', :search, '%')) " +
+            "OR LOWER(p.description) LIKE LOWER(CONCAT('%', :search, '%')) " +
+            "OR LOWER(t.name) LIKE LOWER(CONCAT('%', :search, '%'))")
+    List<Post> searchPosts(@Param("search") String search);
+
 
 }

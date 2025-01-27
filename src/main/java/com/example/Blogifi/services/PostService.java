@@ -151,6 +151,10 @@ public class PostService {
         return postRepository.findByTagsName(tagName);
     }
 
+    public List<Post> search(String value){
+        return postRepository.searchPosts(value);
+    }
+
     public Post ConvertToPost(PostRequestDto postRequestDto) {
 //        Post post= new Post();
 //        post.setTitle(postRequestDto.getTitle());

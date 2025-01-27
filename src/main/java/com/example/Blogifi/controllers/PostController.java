@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -156,6 +157,14 @@ public class PostController {
                 HttpStatus.OK
         );
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<PostResponseDto>> searchPosts(@RequestParam String value){
+        List<Post> searchResult = postService.search(value);
+        List<PostResponseDto> Posts = searchResult.stream().map(postService::ConvertToPostResponse).toList();
+        return ResponseEntity.ok(Posts);
+    }
+
 
 
 }
