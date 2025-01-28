@@ -1,0 +1,30 @@
+# Project Auto Created Config
+spring:
+  application:
+    name: Blogifi
+
+  # For Showing Message #Where - For Showing Additional Message after new ResponseStatusException(HttpStatus.NOT_FOUND,"User With " +id+ "Not Found"))
+  server:
+    error:
+      include-message: always
+
+  # JPS Setup ORM Setup - same as JDBC #Where did we get this From ??
+  # MySQL
+  datasource:
+    url: jdbc:mysql://localhost:3306/blogifidb
+    username: root
+    password: abc123
+
+  # Hibernate
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  # Swagger UI
+  springdoc:
+    swagger-ui:
+      enabled: true
