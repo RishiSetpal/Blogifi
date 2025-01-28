@@ -7,6 +7,10 @@ import com.example.Blogifi.enteties.Tag;
 import com.example.Blogifi.repositories.PostRepository;
 import com.example.Blogifi.repositories.TagRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -91,9 +95,10 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    public List<Post> getAll() {
+    public Page<Post> getAll(int page, int size, String sortDirection, String sortBy) {
 //        return posts.values(); //Returns Collection
-        return postRepository.findAll();
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sortDirection), sortBy));
+        return postRepository.findAll(pageable);
     }
 
     public Post getpost(int id) {

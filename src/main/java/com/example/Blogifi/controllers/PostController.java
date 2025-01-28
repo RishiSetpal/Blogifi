@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,18 +42,19 @@ public class PostController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved the list of posts")
     })
     @GetMapping("")
-    public ResponseEntity<List<PostResponseDto>> getAllPosts() {
+    public ResponseEntity<Page<PostResponseDto>> getAllPosts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "200") int size,
+            @RequestParam(defaultValue = "ASC") String sortDirection,
+            @RequestParam(defaultValue = "id") String sortBy
+    ) {
         // return "All Posts";
         // return postService.getAll();
         // return new ResponseEntity<List<Post>>(postService.getAll(), HttpStatus.OK); // Returns List of Posts
         // This will Return List ResponseDto
-        return new ResponseEntity<List<PostResponseDto>>(
-                postService.getAll()
-                        .stream()
-                        .map(post -> postService.ConvertToPostResponse(post))
-                        .collect(Collectors.toList()),
-                HttpStatus.OK
-        );
+
+        Page<PostResponseDto> posts = postService.getAll(page, size, sortDirection, sortBy).map(postService::ConvertToPostResponse);
+        return ResponseEntity.ok(posts);
     }
 
     @Operation(summary = "Create a new post", description = "Create a new post with the provided details.")

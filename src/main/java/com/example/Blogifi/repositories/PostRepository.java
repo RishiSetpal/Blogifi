@@ -2,6 +2,8 @@ package com.example.Blogifi.repositories;
 
 import com.example.Blogifi.enteties.Post;
 import jakarta.persistence.Entity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,7 +22,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
     @EntityGraph(value = "Post.tags")
     @Override
-    List<Post> findAll();
+    Page<Post> findAll(Pageable pagination);
 
     //@Query("SELECT p FROM posts p WHERE p.title = :title")
     //List<Post> findByTitleContaining(@Param("title") String title);
