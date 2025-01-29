@@ -4843,6 +4843,265 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Part12 & 13",
+					"item": [
+						{
+							"name": "getAllPosts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "getAllPosts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 29 Jan 2025 14:42:57 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"React Native\",\n            \"tags\": [\n                \"react native\",\n                \"rn\",\n                \"java developer\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"RN Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"HTML\",\n            \"tags\": [\n                \"hyper text markup language\",\n                \"html\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"HTML Desc\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"AWS\",\n            \"tags\": [\n                \"aws\"\n            ],\n            \"createdDateTime\": \"2025-01-23T20:27:55.959719\",\n            \"lastModifiedDateTime\": \"2025-01-23T20:27:55.959719\",\n            \"description\": \"AWS Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 200,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalElements\": 5,\n    \"totalPages\": 1,\n    \"size\": 200,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 5,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/posts/search?value=pyy",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"search"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "pyy"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Search",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/posts/search?value=pyy",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"search"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "pyy"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 29 Jan 2025 14:42:52 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 3,\n        \"title\": \"Python\",\n        \"tags\": [\n            \"pyy\",\n            \"python\"\n        ],\n        \"createdDateTime\": null,\n        \"lastModifiedDateTime\": null,\n        \"description\": \"Python Desc\"\n    },\n    {\n        \"id\": 4,\n        \"title\": \"Python\",\n        \"tags\": [\n            \"pyy\",\n            \"python\"\n        ],\n        \"createdDateTime\": null,\n        \"lastModifiedDateTime\": null,\n        \"description\": \"Python Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Pagination getAllPosts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/posts?page=0&sortDirection=DESC&sortBy=title&size=4",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortDirection",
+											"value": "DESC"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "size",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Pagination getAllPosts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/posts?page=0&sortDirection=DESC&sortBy=title&size=4",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "sortDirection",
+													"value": "DESC"
+												},
+												{
+													"key": "sortBy",
+													"value": "title"
+												},
+												{
+													"key": "size",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 29 Jan 2025 14:43:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"React Native\",\n            \"tags\": [\n                \"react native\",\n                \"rn\",\n                \"java developer\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"RN Desc\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"HTML\",\n            \"tags\": [\n                \"hyper text markup language\",\n                \"html\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"HTML Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 4,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 5,\n    \"totalPages\": 2,\n    \"size\": 4,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 4,\n    \"empty\": false\n}"
+								}
+							]
+						}
+					]
 				}
 			]
 		},
