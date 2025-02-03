@@ -4,7 +4,7 @@ spring:
     name: Blogifi
 
   profiles:
-    active: prod
+    active: temp
 
 # For Showing Message #Where - For Showing Additional Message after new ResponseStatusException(HttpStatus.NOT_FOUND,"User With " +id+ "Not Found"))
 server:
