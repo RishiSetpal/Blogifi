@@ -1,5 +1,6 @@
 package com.example.Blogifi.services;
 
+import com.example.Blogifi.dtos.userDto.UserPartialRequestDto;
 import com.example.Blogifi.dtos.userDto.UserRequestDto;
 import com.example.Blogifi.dtos.userDto.UserResponseDto;
 import com.example.Blogifi.enteties.User;
@@ -58,6 +59,14 @@ public class UserService {
         user.setUsername(userRequestDto.getUsername());
         user.setPassword(userRequestDto.getPassword());
         user.setEmail(userRequestDto.getEmail());
+        return user;
+    }
+
+    public User convertToUser(UserPartialRequestDto userPartialRequestDto){
+        User user = new User();
+        user.setUsername(userPartialRequestDto.getUsername());
+        user.setPassword(userPartialRequestDto.getPassword());
+        user.setEmail(userPartialRequestDto.getEmail());
         return user;
     }
 

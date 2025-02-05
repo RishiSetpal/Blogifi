@@ -1,9 +1,11 @@
 package com.example.Blogifi.controllers;
 
+import com.example.Blogifi.dtos.userDto.UserPartialRequestDto;
 import com.example.Blogifi.dtos.userDto.UserRequestDto;
 import com.example.Blogifi.dtos.userDto.UserResponseDto;
 import com.example.Blogifi.enteties.User;
 import com.example.Blogifi.services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -49,10 +51,11 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    //While Editing using partial DTO to Validate it partially. (Like we can user partial RequestBody)
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDto> updateUserById(@PathVariable int id, @RequestBody UserRequestDto userRequestDto){
+    public ResponseEntity<UserResponseDto> updateUserById(@PathVariable int id, @Valid @RequestBody UserPartialRequestDto userPartialRequestDto){
 
-        User user = userService.convertToUser(userRequestDto);
+        User user = userService.convertToUser(userPartialRequestDto);
         User updatedUser  = userService.update(id, user);
         UserResponseDto userResponseDto = userService.convertToUserResponseDto(updatedUser);
         return ResponseEntity.ok(userResponseDto);
