@@ -18,15 +18,15 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// Dependency Injection
+// 1. Field Injection
+// 2. Setter Injection
+// 3. Interface Injection
+// 4. Constructor Injection
+// TODO - Query Look | Projection
+
 @Service
 public class PostService {
-
-    // Dependency Injection
-    // 1. Field Injection
-    // 2. Setter Injection
-    // 3. Interface Injection
-    // 4. Constructor Injection
-    // TODO - Query Look | Projection
 
     // Constructor Injection
     @Autowired
@@ -39,16 +39,15 @@ public class PostService {
         this.tagRepository = tagRepository;
     }
 
-    public Post createPost(Post post) {
-        //Using Stream Updating Tags in Tags Table
-        Set<Tag> persistedTags =
-                post.getTags()
-                        .stream()
-                        .map(tag ->
-                                tagRepository.findByName(tag.getName()).orElseGet(() -> tagRepository.save(tag))
-                        ).collect(Collectors.toSet());
-        post.setTags(persistedTags);
+    //Returns previously added tag with its id orElseGet( tagRepositoy.save(newTag) );
+    private Set<Tag> persistTags(Set<Tag> tags) {
+        return tags.stream()
+                .map(tag -> tagRepository.findByName(tag.getName()).orElseGet(()-> tagRepository.save(tag)))
+                .collect(Collectors.toSet());
+    }
 
+    public Post createPost(Post post) {
+        post.setTags(persistTags(post.getTags()));
         return postRepository.save(post);
     }
 
@@ -64,26 +63,19 @@ public class PostService {
     public Post Update(int id, Post post) {
         getpost(id);
         post.setId(id);
-        Set<Tag> persistedTags =
-                post.getTags()
-                        .stream()
-                        .map(tag -> tagRepository.findByName(tag.getName()).orElseGet(() -> tagRepository.save(tag)))
-                        .collect(Collectors.toSet());
-        post.setTags(persistedTags);
+        post.setTags(persistTags(post.getTags()));
         return postRepository.save(post);
     }
 
+    // If we Directly Delete by ID then
+    // Case 1: No Other Reference then it will Delete it from tags and posts_tags Table,
+    // Case 2: Other References are Present, then  while Deleting it from tags Table, it will throw an Exception that Other References are Present
+    //
+    // Before Deleting post we need to delete its Reference
     public void delete(int id) {
-        // Before Deleting post we need to delete its Reference
-        // Finding Post by ID
         Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
-        // Setting Tags to Empty Set so its References are Removed
-        post.setTags(new HashSet<>());
+        post.setTags(new HashSet<>()); // Setting Tags to Empty Set so its References are Removed
         postRepository.save(post); // This will Remove References
-
-        // If we Directly Delete by ID then
-        // Case 1: No Other Reference then it will Delete it from tags and posts_tags Table,
-        // Case 2: Other References are Present, then  while Deleting it from tags Table, it will throw an Exception that Other References are Present
         postRepository.deleteById(id);
     }
 
