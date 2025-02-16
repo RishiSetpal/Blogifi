@@ -43,7 +43,7 @@ public class User {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> posts = new ArrayList<>();
+        @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Post> posts = new ArrayList<>();
 
 }

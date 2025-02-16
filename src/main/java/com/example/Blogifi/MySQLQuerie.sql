@@ -9,12 +9,17 @@ show databases;
 USE blogifidb;
 
 SHOW TABLES;
+
 DESC posts;
 DESC tags;
 DESC posts_tags;
+DESC user;
+
 SELECT * FROM posts;
 SELECT * FROM tags;
 SELECT * FROM posts_tags;
+SELECT * FROM user;
+
 
 -- INSERT INTO tags(name) value("it"); -- Dont add it if the table Column is Unique
 
