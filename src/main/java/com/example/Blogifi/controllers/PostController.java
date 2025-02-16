@@ -14,10 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
-import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -48,11 +45,6 @@ public class PostController {
             @RequestParam(defaultValue = "ASC") String sortDirection,
             @RequestParam(defaultValue = "id") String sortBy
     ) {
-        // return "All Posts";
-        // return postService.getAll();
-        // return new ResponseEntity<List<Post>>(postService.getAll(), HttpStatus.OK); // Returns List of Posts
-        // This will Return List ResponseDto
-
         Page<PostResponseDto> posts = postService.getAll(page, size, sortDirection, sortBy).map(postService::ConvertToPostResponse);
         return ResponseEntity.ok(posts);
     }
@@ -64,9 +56,6 @@ public class PostController {
     })
     @PostMapping("")
     public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
-        // return "Posts Created";
-        // postService.create(post);
-        // return "Post Created Successfully";
         Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto));
         return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
     }
@@ -79,7 +68,6 @@ public class PostController {
     // PathParam - /@PathVarible
     @GetMapping("/{id}")
     public ResponseEntity<PostResponseDto> GetPostById(@PathVariable int id) {
-        // return new ResponseEntity<Post>(postService.getpost(id), HttpStatus.CREATED); // Previously it was Returning Post
         return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postService.getpost(id)), HttpStatus.CREATED);
     }
 
@@ -112,7 +100,6 @@ public class PostController {
         Post oldpost = postService.getpost(id);
         oldpost.setTitle(postRequestDto.getTitle() != null ? postRequestDto.getTitle() : oldpost.getTitle());
         oldpost.setDescription(postRequestDto.getDescription() != null ? postRequestDto.getTitle() : oldpost.getDescription());
-//         oldpost.setTags(post.getTags() !=null ? post.getTags() : oldpost.getTags());
         oldpost.setTags(!postRequestDto.getTags().isEmpty()
                 ?
                 postRequestDto.getTags()

@@ -13,15 +13,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserPartialRequestDto {
 
-    // @NotBlank(message = "username cannot be blank")
     @Size(min = 3, max = 20, message = "username must be between 3 and 20 characters")
     private String username;
 
-    // @NotBlank(message = "password cannot be blank")
     @Size(min = 8, max = 15, message = "password must be between 8 and 15 characters")
     private String password;
 
     @Email(message = "Email should be Valid")
-    //@NotEmpty(message = "Email cannot be empty")
     private String email;
 }
