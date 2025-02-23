@@ -2,12 +2,14 @@ package com.example.Blogifi.services;
 
 import com.example.Blogifi.dtos.postDto.PostRequestDto;
 import com.example.Blogifi.dtos.postDto.PostResponseDto;
+import com.example.Blogifi.dtos.userDto.UserAuthorResponseDto;
 import com.example.Blogifi.enteties.Post;
 import com.example.Blogifi.enteties.Tag;
 import com.example.Blogifi.enteties.User;
 import com.example.Blogifi.repositories.PostRepository;
 import com.example.Blogifi.repositories.TagRepository;
 import com.example.Blogifi.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -94,11 +96,25 @@ public class PostService {
     // Case 2: Other References are Present, then  while Deleting it from tags Table, it will throw an Exception that Other References are Present
     //
     // Before Deleting post we need to delete its Reference
-    public void delete(int id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
-        post.setTags(new HashSet<>()); // Setting Tags to Empty Set so its References are Removed
-        postRepository.save(post); // This will Remove References
-        postRepository.deleteById(id);
+    @Transactional
+    public void delete(int id, int userId) {
+            //Removing this as we are searching user Created post if we don't found then it will be NotFound
+            //Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
+            //postRepository.save(existingPost); // This will Remove References
+            //postRepository.deleteById(id);
+
+        User user = userService.getById(userId);
+        Post existingPost = user.getPosts()
+                .stream()
+                .filter(post -> post.getId() == id)
+                .findFirst().orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
+        existingPost.setTags(new HashSet<>()); // Setting Tags to Empty Set so its References are Removed
+            //if post is not present in user then it will also get removed from post
+            //List<Post> newPost = user.getPosts().stream().filter(post -> post.getId() != id).toList(); // new List<post> without postWithIdProvided
+            //user.setPosts(newPost);
+        user.getPosts().removeIf(post -> post.getId() == id);
+        postRepository.delete(existingPost);
+        userRepository.save(user);
     }
 
     // Adding More QueryLookup getByPropertyName
@@ -126,14 +142,28 @@ public class PostService {
     }
 
     public PostResponseDto ConvertToPostResponse(Post post) {
+        // User user = post.getUser();
+        // UserAuthorResponseDto userAuthorResponseDto = new UserAuthorResponseDto();
+        // userAuthorResponseDto.setId(user.getId());
+        // userAuthorResponseDto.setUsername(user.getUsername());
+
         return new PostResponseDto(
                 post.getId(),
                 post.getTitle(),
                 post.getDescription(),
                 post.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
+                convertToUserAuthorResponse(post.getUser()),
                 post.getCreatedDateTime(),
                 post.getLastModifiedDateTime()
         );
+
+    }
+
+    public UserAuthorResponseDto convertToUserAuthorResponse(User user){
+        UserAuthorResponseDto userAuthorResponseDto = new UserAuthorResponseDto();
+        userAuthorResponseDto.setId(user.getId());
+        userAuthorResponseDto.setUsername(user.getUsername());
+        return userAuthorResponseDto;
     }
 
 }

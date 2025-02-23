@@ -108,9 +108,9 @@ public class PostController {
             @ApiResponse(responseCode = "204", description = "Successfully deleted the post"),
             @ApiResponse(responseCode = "404", description = "Post not found")
     })
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable int id) {
-        postService.delete(id);
+    @DeleteMapping("/{id}/user/{userId}")
+    public ResponseEntity<?> deleteById(@PathVariable int id, @PathVariable int userId) {
+        postService.delete(id, userId);
         return ResponseEntity.ok("");
     }
 
