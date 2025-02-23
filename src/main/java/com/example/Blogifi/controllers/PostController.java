@@ -5,14 +5,21 @@ import com.example.Blogifi.dtos.postDto.PostResponseDto;
 import com.example.Blogifi.enteties.Post;
 import com.example.Blogifi.enteties.Tag;
 import com.example.Blogifi.services.PostService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,9 +36,14 @@ public class PostController {
     @Autowired
     final private PostService postService;
 
+    @Autowired
+    final private ObjectMapper objectMapper;
+
+
     // Constructor
-    PostController(PostService postService) {
+    PostController(PostService postService, ObjectMapper objectMapper) {
         this.postService = postService;
+        this.objectMapper = objectMapper;
     }
 
     @Operation(summary = "Get all posts", description = "Retrieve a list of all posts.")
@@ -54,10 +66,20 @@ public class PostController {
             @ApiResponse(responseCode = "201", description = "Post successfully created"),
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
-    @PostMapping("/user/{userId}")
-    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto, @PathVariable int userId) {
-        Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto), userId);
-        return ResponseEntity.ok(postService.ConvertToPostResponse(postResponse));
+    @PostMapping(value = "/user/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<PostResponseDto> createPost(
+            @PathVariable int userId,
+            @RequestPart(name = "post", required = true) @Valid @NotNull String postRequestDtoString,
+            @RequestPart(name = "image") MultipartFile image
+    ) {
+        PostRequestDto postRequestDto = null;
+        try {
+            postRequestDto = objectMapper.readValue(postRequestDtoString, PostRequestDto.class);
+        } catch (JsonProcessingException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Invalid post data");
+        }
+        Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto), image, userId);
+        return ResponseEntity.status(201).body(postService.ConvertToPostResponse(postResponse));
     }
 
     @Operation(summary = "Get post by ID", description = "Retrieve a post by its ID.")

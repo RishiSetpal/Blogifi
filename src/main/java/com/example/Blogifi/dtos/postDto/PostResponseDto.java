@@ -18,6 +18,7 @@ public class PostResponseDto {
     private String Description;
     private Set<String> tags;
     private UserAuthorResponseDto author;
+    private String imageUrl;
     private LocalDateTime createdDateTime;
     private LocalDateTime lastModifiedDateTime;
 }

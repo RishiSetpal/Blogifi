@@ -6222,7 +6222,7 @@
 			]
 		},
 		{
-			"name": "Part17 Post by UserID",
+			"name": "Part17 Post by UserID Part18 added author",
 			"item": [
 				{
 					"name": "users (create Users First)",
@@ -7248,6 +7248,1380 @@
 									],
 									"cookie": [],
 									"body": null
+								}
+							]
+						},
+						{
+							"name": "get Post By title id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/title?value=ang",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"title"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "ang"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get Post By title id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/title?value=ang",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"title"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "ang"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:37:42 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 4,\n        \"title\": \"Angualarr\",\n        \"tags\": [\n            \"angular\",\n            \"ng\",\n            \"it\"\n        ],\n        \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n        \"lastModifiedDateTime\": \"2025-02-23T12:03:10.889032\",\n        \"description\": \"Angualar Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "get Post By tags name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/tag?value=AWS",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"tag"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "AWS"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get Post By tags name",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/tag?value=AWS",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"tag"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "AWS"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:38:21 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"AWS\",\n        \"tags\": [\n            \"aws\"\n        ],\n        \"createdDateTime\": \"2025-02-23T11:49:45.619933\",\n        \"lastModifiedDateTime\": \"2025-02-23T11:49:45.619933\",\n        \"description\": \"AWS Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/posts/search?value=ng",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"search"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "ng"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Search",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/posts/search?value=ng",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"search"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "ng"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:39:49 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 4,\n        \"title\": \"Angualarr\",\n        \"tags\": [\n            \"angular\",\n            \"ng\",\n            \"it\"\n        ],\n        \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n        \"lastModifiedDateTime\": \"2025-02-23T12:03:10.889032\",\n        \"description\": \"Angualar Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Pagination getAllPosts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/posts?page=0&sortDirection=DESC&sortBy=title&size=4",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortDirection",
+											"value": "DESC"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "size",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Pagination getAllPosts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/posts?page=0&sortDirection=DESC&sortBy=title&size=4",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "sortDirection",
+													"value": "DESC"
+												},
+												{
+													"key": "sortBy",
+													"value": "title"
+												},
+												{
+													"key": "size",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 29 Jan 2025 14:43:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"React Native\",\n            \"tags\": [\n                \"react native\",\n                \"rn\",\n                \"java developer\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"RN Desc\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"HTML\",\n            \"tags\": [\n                \"hyper text markup language\",\n                \"html\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"HTML Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 4,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 5,\n    \"totalPages\": 2,\n    \"size\": 4,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 4,\n    \"empty\": false\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Part19 add imageuri in Storage",
+			"item": [
+				{
+					"name": "users (create Users First)",
+					"item": [
+						{
+							"name": "get All Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/users",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get All Users",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/users",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:05:16 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"username\": \"Rishi\",\n            \"password\": \"Rishi123\",\n            \"email\": \"rishi@gmail.com\",\n            \"createdDate\": \"2025-02-23T11:34:27.879178\",\n            \"lastModifiedDate\": \"2025-02-23T11:34:27.879178\"\n        },\n        {\n            \"id\": 2,\n            \"username\": \"Bhavika\",\n            \"password\": \"Bhavika123\",\n            \"email\": \"bhavika@gmail.com\",\n            \"createdDate\": \"2025-02-23T11:35:00.390689\",\n            \"lastModifiedDate\": \"2025-02-23T11:35:00.390689\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalElements\": 2,\n    \"totalPages\": 1,\n    \"size\": 2,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 2,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "create Users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"username\": \"Rishi\",\r\n//     \"password\": \"Rishi123\",\r\n//     \"email\": \"rishi@gmail.com\"\r\n// }\r\n\r\n{\r\n    \"username\": \"Bhavika\",\r\n    \"password\": \"Bhavika123\",\r\n    \"email\": \"bhavika@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create Users",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"Rishi\",\r\n    \"password\": \"Rishi123\",\r\n    \"email\": \"rishi@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 15:28:15 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"Rishi\",\n    \"password\": \"Rishi123\",\n    \"email\": \"rishi@gmail.com\",\n    \"createdDate\": \"2025-01-30T20:58:15.4551145\",\n    \"lastModifiedDate\": \"2025-01-30T20:58:15.4551145\"\n}"
+								},
+								{
+									"name": "create Users Copy",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"Rishi\",\r\n    \"password\": \"Rishi123\",\r\n    \"email\": \"rishi@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 02 Feb 2025 10:20:38 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2025-02-02T10:20:38.271+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User with username:Rishiis already exists\",\n    \"path\": \"/Blogifi/api/users\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get User by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get User by Id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users/1",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:05:51 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"Rishi\",\n    \"password\": \"Rishi123\",\n    \"email\": \"rishi@gmail.com\",\n    \"createdDate\": \"2025-02-23T11:34:27.879178\",\n    \"lastModifiedDate\": \"2025-02-23T11:34:27.879178\"\n}"
+								}
+							]
+						},
+						{
+							"name": "edit User by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"RishiSetpal\",\r\n    \"password\": \"RishSetpali123\",\r\n    \"email\": \"rishi.setpal@gmail.comm\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "edit User by Id",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"RishiSetpal\",\r\n    \"password\": \"RishSetpali123\",\r\n    \"email\": \"rishi.setpal@gmail.comm\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users/1",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:06:36 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"RishiSetpal\",\n    \"password\": \"RishSetpali123\",\n    \"email\": \"rishi.setpal@gmail.comm\",\n    \"createdDate\": \"2025-02-23T11:34:27.879178\",\n    \"lastModifiedDate\": \"2025-02-23T11:36:36.0668439\"\n}"
+								}
+							]
+						},
+						{
+							"name": "delete user by Id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/users/3",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "delete user by Id",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/users/3",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users",
+												"3"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:08:00 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2025-02-23T06:08:00.692+00:00\",\n    \"status\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"User with id 3 Not Found\",\n    \"path\": \"/Blogifi/api/users/3\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "post",
+					"item": [
+						{
+							"name": "getAllPosts [has link]",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "getAllPosts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 20:16:16 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"AWS\",\n            \"tags\": [\n                \"aws\"\n            ],\n            \"author\": {\n                \"id\": 1,\n                \"username\": \"RishiSetpal\"\n            },\n            \"imageUrl\": null,\n            \"createdDateTime\": \"2025-02-23T11:49:45.619933\",\n            \"lastModifiedDateTime\": \"2025-02-23T11:49:45.619933\",\n            \"description\": \"AWS Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Eight\",\n            \"tags\": [\n                \"it\",\n                \"eight\"\n            ],\n            \"author\": {\n                \"id\": 1,\n                \"username\": \"RishiSetpal\"\n            },\n            \"imageUrl\": null,\n            \"createdDateTime\": \"2025-02-23T11:50:48.602148\",\n            \"lastModifiedDateTime\": \"2025-02-23T11:50:48.602148\",\n            \"description\": \"Eight Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Angualarr\",\n            \"tags\": [\n                \"angular\",\n                \"ng\",\n                \"it\"\n            ],\n            \"author\": {\n                \"id\": 2,\n                \"username\": \"Bhavika\"\n            },\n            \"imageUrl\": null,\n            \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n            \"lastModifiedDateTime\": \"2025-02-23T12:03:10.889032\",\n            \"description\": \"Angualar Desc\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"Python2\",\n            \"tags\": [\n                \"python2\",\n                \"py2\"\n            ],\n            \"author\": {\n                \"id\": 2,\n                \"username\": \"Bhavika\"\n            },\n            \"imageUrl\": \"http://localhost:7777/Blogifi/api/images/posts/gMVLu4KuZCzpy7_uJtCt6xHUOG5NJeNHf3u70BjLlgg=.png\",\n            \"createdDateTime\": \"2025-02-24T01:43:49.925703\",\n            \"lastModifiedDateTime\": \"2025-02-24T01:43:49.925703\",\n            \"description\": \"Python Desc2\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"Python2\",\n            \"tags\": [\n                \"python2\",\n                \"py2\"\n            ],\n            \"author\": {\n                \"id\": 2,\n                \"username\": \"Bhavika\"\n            },\n            \"imageUrl\": \"http://localhost:7777/Blogifi/api/images/posts/jS4mRIJL9NXpnHjsr1_I-00Di1ncrRVLNUf_WwlkiFI=.png\",\n            \"createdDateTime\": \"2025-02-24T01:44:07.313148\",\n            \"lastModifiedDateTime\": \"2025-02-24T01:44:07.313148\",\n            \"description\": \"Python Desc2\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"python\",\n                \"py\"\n            ],\n            \"author\": {\n                \"id\": 2,\n                \"username\": \"Bhavika\"\n            },\n            \"imageUrl\": \"http://localhost:7777/Blogifi/api/images/posts/SZH2GtmuyM-i2BSx0Yg-xhPmIaEfdmCUTCv8tbA0m9I=.png\",\n            \"createdDateTime\": \"2025-02-24T01:44:38.807419\",\n            \"lastModifiedDateTime\": \"2025-02-24T01:44:38.807419\",\n            \"description\": \"Python Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 200,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 1,\n    \"totalElements\": 6,\n    \"last\": true,\n    \"size\": 200,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"numberOfElements\": 6,\n    \"first\": true,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Posts by userId [used]",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "post",
+											"value": "{\n    \"title\": \"Python\",\n    \"description\": \"Python Desc\",\n    \"tags\": [\n        \"Python\",\n        \"Py\"\n    ]\n}",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "postman-cloud:///1eff21ff-fb22-4e30-a15e-edc97d1cab64"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Posts by userId",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "post",
+													"value": "{\n    \"title\": \"Python2\",\n    \"description\": \"Python Desc2\",\n    \"tags\": [\n        \"Python2\",\n        \"Py2\"\n    ]\n}",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "postman-cloud:///1eff21ff-fb22-4e30-a15e-edc97d1cab64"
+												}
+											],
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 20:14:07 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 9,\n    \"title\": \"Python2\",\n    \"tags\": [\n        \"python2\",\n        \"py2\"\n    ],\n    \"author\": {\n        \"id\": 2,\n        \"username\": \"Bhavika\"\n    },\n    \"imageUrl\": \"http://localhost:7777/Blogifi/api/images/posts/jS4mRIJL9NXpnHjsr1_I-00Di1ncrRVLNUf_WwlkiFI=.png\",\n    \"createdDateTime\": \"2025-02-24T01:44:07.313148\",\n    \"lastModifiedDateTime\": \"2025-02-24T01:44:07.313148\",\n    \"description\": \"Python Desc2\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get Post By Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get Post By Id [Present]",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/5",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"5"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 17 Jan 2025 05:04:24 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"title\": \"Angualar\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "UpdatePosts by userId Copy",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/4/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"4",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Posts by userId Copy",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/4/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"4",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:27:57 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"title\": \"Angualarr\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n    \"lastModifiedDateTime\": \"2025-02-23T11:57:57.132479\",\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "UpdatePosts by userId",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    // \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/4/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"4",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Posts by userId Copy",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    // \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/4/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"4",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:33:10 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"title\": \"Angualarr\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n    \"lastModifiedDateTime\": \"2025-02-23T12:03:10.8890318\",\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "delete By Id [updated]",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/7/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"7",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "delete By Id",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/5/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"5",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain;charset=UTF-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "0"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 20:12:42 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								},
+								{
+									"name": "delete By Id",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/7/user/1",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"7",
+												"user",
+												"1"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 20:13:07 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2025-02-23T20:13:07.549+00:00\",\n    \"status\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"Post with Id: 7 not Found.\",\n    \"path\": \"/Blogifi/api/posts/7/user/1\"\n}"
 								}
 							]
 						},

@@ -17,8 +17,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -42,6 +45,9 @@ public class PostService {
     final private UserService userService;
     final private UserRepository userRepository;
 
+    @Autowired
+    ImageService imageService;
+
     public PostService(PostRepository postRepository, TagRepository tagRepository, UserService userService, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.tagRepository = tagRepository;
@@ -49,17 +55,22 @@ public class PostService {
         this.userRepository = userRepository;
     }
 
-    //Returns previously added tag with its id orElseGet( tagRepositoy.save(newTag) );
+    //Returns previously added tag with its id orElseGet( tagRepository.save(newTag) );
     private Set<Tag> persistTags(Set<Tag> tags) {
         return tags.stream()
                 .map(tag -> tagRepository.findByName(tag.getName()).orElseGet(() -> tagRepository.save(tag)))
                 .collect(Collectors.toSet());
     }
 
-    public Post createPost(Post post, int userId) {
+    public Post createPost(Post post, MultipartFile image, int userId) {
         User user = userService.getById(userId); // get user by I'd
         post.setUser(user); // set user in post // So that post will be created with user ID and user added in database with post.
         post.setTags(persistTags(post.getTags()));
+        try {
+            post.setImageUrl(imageService.saveImage(image));
+        } catch (IOException | NoSuchAlgorithmException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to upload image");
+        }
         return postRepository.save(post);
     }
 
@@ -85,7 +96,7 @@ public class PostService {
         if (post.getDescription() != null) {
             existingPost.setDescription(post.getDescription());
         }
-        if (post.getTags() != null){
+        if (post.getTags() != null) {
             existingPost.setTags(persistTags(post.getTags()));
         }
         return postRepository.save(existingPost);
@@ -98,20 +109,20 @@ public class PostService {
     // Before Deleting post we need to delete its Reference
     @Transactional
     public void delete(int id, int userId) {
-            //Removing this as we are searching user Created post if we don't found then it will be NotFound
-            //Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
-            //postRepository.save(existingPost); // This will Remove References
-            //postRepository.deleteById(id);
+        //Removing this as we are searching user Created post if we don't found then it will be NotFound
+        //Post post = postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
+        //postRepository.save(existingPost); // This will Remove References
+        //postRepository.deleteById(id);
 
         User user = userService.getById(userId);
         Post existingPost = user.getPosts()
                 .stream()
                 .filter(post -> post.getId() == id)
-                .findFirst().orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
+                .findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Post with Id: " + id + " not Found."));
         existingPost.setTags(new HashSet<>()); // Setting Tags to Empty Set so its References are Removed
-            //if post is not present in user then it will also get removed from post
-            //List<Post> newPost = user.getPosts().stream().filter(post -> post.getId() != id).toList(); // new List<post> without postWithIdProvided
-            //user.setPosts(newPost);
+        //if post is not present in user then it will also get removed from post
+        //List<Post> newPost = user.getPosts().stream().filter(post -> post.getId() != id).toList(); // new List<post> without postWithIdProvided
+        //user.setPosts(newPost);
         user.getPosts().removeIf(post -> post.getId() == id);
         postRepository.delete(existingPost);
         userRepository.save(user);
@@ -153,13 +164,14 @@ public class PostService {
                 post.getDescription(),
                 post.getTags().stream().map(Tag::getName).collect(Collectors.toSet()),
                 convertToUserAuthorResponse(post.getUser()),
+                post.getImageUrl(),
                 post.getCreatedDateTime(),
                 post.getLastModifiedDateTime()
         );
 
     }
 
-    public UserAuthorResponseDto convertToUserAuthorResponse(User user){
+    public UserAuthorResponseDto convertToUserAuthorResponse(User user) {
         UserAuthorResponseDto userAuthorResponseDto = new UserAuthorResponseDto();
         userAuthorResponseDto.setId(user.getId());
         userAuthorResponseDto.setUsername(user.getUsername());
