@@ -12,7 +12,7 @@
 			"name": "Post",
 			"item": [
 				{
-					"name": "Part1",
+					"name": "Part1 DefaultListofObject",
 					"item": [
 						{
 							"name": "getAllPosts",
@@ -3071,8 +3071,7 @@
 								}
 							]
 						}
-					],
-					"description": "> 1\\. MySQL setup in pom.xml and in application.properties mysql-connector-j  \n2\\. Updated MySQLQuerie.sql  \n3\\. Used @Entity form jakarta from spring-boot-Starter-data-JPA Dependency  \n4\\. @Entity name will create same in Database @Id \\[PK\\] @GenerateValue(strategy = GenerationType.IDENTITY)  \n5\\. Add - JPA Repository Package &gt; PostRepository.java Interface extends JpaRepository with its DataType in TableName, PK type&lt;Posts, Integer&gt;  \n6\\. Add - RequestDto and ResponseDto ()"
+					]
 				},
 				{
 					"name": "Part6-7",
@@ -3883,8 +3882,7 @@
 								}
 							]
 						}
-					],
-					"description": "> 1\\. MySQL setup in pom.xml and in application.properties mysql-connector-j  \n2\\. Updated MySQLQuerie.sql  \n3\\. Used @Entity form jakarta from spring-boot-Starter-data-JPA Dependency  \n4\\. @Entity name will create same in Database @Id \\[PK\\] @GenerateValue(strategy = GenerationType.IDENTITY)  \n5\\. Add - JPA Repository Package &gt; PostRepository.java Interface extends JpaRepository with its DataType in TableName, PK type&lt;Posts, Integer&gt;  \n6\\. Add - RequestDto and ResponseDto ()"
+					]
 				},
 				{
 					"name": "Part9",
@@ -4695,8 +4693,7 @@
 								}
 							]
 						}
-					],
-					"description": "> 1\\. MySQL setup in pom.xml and in application.properties mysql-connector-j  \n2\\. Updated MySQLQuerie.sql  \n3\\. Used @Entity form jakarta from spring-boot-Starter-data-JPA Dependency  \n4\\. @Entity name will create same in Database @Id \\[PK\\] @GenerateValue(strategy = GenerationType.IDENTITY)  \n5\\. Add - JPA Repository Package &gt; PostRepository.java Interface extends JpaRepository with its DataType in TableName, PK type&lt;Posts, Integer&gt;  \n6\\. Add - RequestDto and ResponseDto ()"
+					]
 				},
 				{
 					"name": "Part11",
@@ -4845,7 +4842,7 @@
 					]
 				},
 				{
-					"name": "Part12 & 13",
+					"name": "Part12 & 13 Pagination",
 					"item": [
 						{
 							"name": "getAllPosts",
@@ -6120,10 +6117,17 @@
 								"auth": {
 									"type": "noauth"
 								},
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": ""
+									"raw": "{{baseurl}}/users/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"2"
+									]
 								}
 							},
 							"response": [
@@ -6214,6 +6218,1404 @@
 						}
 					},
 					"response": []
+				}
+			]
+		},
+		{
+			"name": "Part17 Post by UserID",
+			"item": [
+				{
+					"name": "users (create Users First)",
+					"item": [
+						{
+							"name": "get All Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/users",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get All Users",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/users",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:05:16 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"username\": \"Rishi\",\n            \"password\": \"Rishi123\",\n            \"email\": \"rishi@gmail.com\",\n            \"createdDate\": \"2025-02-23T11:34:27.879178\",\n            \"lastModifiedDate\": \"2025-02-23T11:34:27.879178\"\n        },\n        {\n            \"id\": 2,\n            \"username\": \"Bhavika\",\n            \"password\": \"Bhavika123\",\n            \"email\": \"bhavika@gmail.com\",\n            \"createdDate\": \"2025-02-23T11:35:00.390689\",\n            \"lastModifiedDate\": \"2025-02-23T11:35:00.390689\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 2,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalElements\": 2,\n    \"totalPages\": 1,\n    \"size\": 2,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 2,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "create Users",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"username\": \"Rishi\",\r\n//     \"password\": \"Rishi123\",\r\n//     \"email\": \"rishi@gmail.com\"\r\n// }\r\n\r\n{\r\n    \"username\": \"Bhavika\",\r\n    \"password\": \"Bhavika123\",\r\n    \"email\": \"bhavika@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create Users",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"Rishi\",\r\n    \"password\": \"Rishi123\",\r\n    \"email\": \"rishi@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 30 Jan 2025 15:28:15 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"Rishi\",\n    \"password\": \"Rishi123\",\n    \"email\": \"rishi@gmail.com\",\n    \"createdDate\": \"2025-01-30T20:58:15.4551145\",\n    \"lastModifiedDate\": \"2025-01-30T20:58:15.4551145\"\n}"
+								},
+								{
+									"name": "create Users Copy",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"Rishi\",\r\n    \"password\": \"Rishi123\",\r\n    \"email\": \"rishi@gmail.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 02 Feb 2025 10:20:38 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2025-02-02T10:20:38.271+00:00\",\n    \"status\": 400,\n    \"error\": \"Bad Request\",\n    \"message\": \"User with username:Rishiis already exists\",\n    \"path\": \"/Blogifi/api/users\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get User by Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get User by Id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users/1",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:05:51 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"Rishi\",\n    \"password\": \"Rishi123\",\n    \"email\": \"rishi@gmail.com\",\n    \"createdDate\": \"2025-02-23T11:34:27.879178\",\n    \"lastModifiedDate\": \"2025-02-23T11:34:27.879178\"\n}"
+								}
+							]
+						},
+						{
+							"name": "edit User by Id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"RishiSetpal\",\r\n    \"password\": \"RishSetpali123\",\r\n    \"email\": \"rishi.setpal@gmail.comm\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/users/1",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "edit User by Id",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"RishiSetpal\",\r\n    \"password\": \"RishSetpali123\",\r\n    \"email\": \"rishi.setpal@gmail.comm\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/users/1",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:06:36 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"username\": \"RishiSetpal\",\n    \"password\": \"RishSetpali123\",\n    \"email\": \"rishi.setpal@gmail.comm\",\n    \"createdDate\": \"2025-02-23T11:34:27.879178\",\n    \"lastModifiedDate\": \"2025-02-23T11:36:36.0668439\"\n}"
+								}
+							]
+						},
+						{
+							"name": "delete user by Id",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/users/3",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"users",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "delete user by Id",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/users/3",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"users",
+												"3"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:08:00 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"timestamp\": \"2025-02-23T06:08:00.692+00:00\",\n    \"status\": 404,\n    \"error\": \"Not Found\",\n    \"message\": \"User with id 3 Not Found\",\n    \"path\": \"/Blogifi/api/users/3\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "post",
+					"item": [
+						{
+							"name": "getAllPosts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "getAllPosts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:23:21 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"AWS\",\n            \"tags\": [\n                \"aws\"\n            ],\n            \"createdDateTime\": \"2025-02-23T11:49:45.619933\",\n            \"lastModifiedDateTime\": \"2025-02-23T11:49:45.619933\",\n            \"description\": \"AWS Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Eight\",\n            \"tags\": [\n                \"it\",\n                \"eight\"\n            ],\n            \"createdDateTime\": \"2025-02-23T11:50:48.602148\",\n            \"lastModifiedDateTime\": \"2025-02-23T11:50:48.602148\",\n            \"description\": \"Eight Desc\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Seven\",\n            \"tags\": [\n                \"seven\",\n                \"it\"\n            ],\n            \"createdDateTime\": \"2025-02-23T11:51:10.976575\",\n            \"lastModifiedDateTime\": \"2025-02-23T11:51:10.976575\",\n            \"description\": \"Seven Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Angualar\",\n            \"tags\": [\n                \"angular\",\n                \"ng\",\n                \"it\"\n            ],\n            \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n            \"lastModifiedDateTime\": \"2025-02-23T11:53:00.952045\",\n            \"description\": \"Angualar Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 200,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": true,\n    \"totalElements\": 4,\n    \"totalPages\": 1,\n    \"size\": 200,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 4,\n    \"empty\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create Posts by userId",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "// {\r\n//     \"title\": \"AWS\",\r\n//     \"description\": \"AWS Desc\",\r\n//     \"tags\": [\r\n//         \"AWS\"\r\n//     ]\r\n// }\r\n// {\r\n//     \"title\": \"Eight\",\r\n//     \"description\": \"Eight Desc\",\r\n//     \"tags\": [\r\n//         \"Eight\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Seven\",\r\n//     \"description\": \"Seven Desc\",\r\n//     \"tags\": [\r\n//         \"Seven\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n{\r\n    \"title\": \"Angualar\",\r\n    \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}\r\n// {\r\n//     \"title\": \"React\",\r\n//     \"description\": \"React Desc\"\r\n//     // Worries 😯 \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"HTML\",\r\n//     \"description\": \"HTML Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"HTML\",\r\n//         \"Hyper Text Markup Language\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"React Native\",\r\n//     \"description\": \"RN Desc\",\r\n//     \"tags\": [\r\n//         \"RN\",\r\n//         \"React Native\",\r\n//         \"java developer\"\r\n//     ] // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, and Description and tags\r\n// }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Posts by userId",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"AWS\",\r\n    \"description\": \"AWS Desc\",\r\n    \"tags\": [\r\n        \"AWS\"\r\n    ]\r\n}\r\n// {\r\n//     \"title\": \"Eight\",\r\n//     \"description\": \"Eight Desc\",\r\n//     \"tags\": [\r\n//         \"Eight\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Seven\",\r\n//     \"description\": \"Seven Desc\",\r\n//     \"tags\": [\r\n//         \"Seven\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Angualar\",\r\n//     \"description\": \"Angualar Desc\",\r\n//     \"tags\": [\r\n//         \"Angular\",\r\n//         \"ng\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"React\",\r\n//     \"description\": \"React Desc\"\r\n//     // Worries 😯 \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"HTML\",\r\n//     \"description\": \"HTML Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"HTML\",\r\n//         \"Hyper Text Markup Language\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"React Native\",\r\n//     \"description\": \"RN Desc\",\r\n//     \"tags\": [\r\n//         \"RN\",\r\n//         \"React Native\",\r\n//         \"java developer\"\r\n//     ] // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, and Description and tags\r\n// }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/user/1",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"user",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:20:08 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"title\": \"AWS\",\n    \"tags\": [\n        \"aws\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:49:45.6199332\",\n    \"lastModifiedDateTime\": \"2025-02-23T11:49:45.6199332\",\n    \"description\": \"AWS Desc\"\n}"
+								},
+								{
+									"name": "Create Posts by userId",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "// {\r\n//     \"title\": \"AWS\",\r\n//     \"description\": \"AWS Desc\",\r\n//     \"tags\": [\r\n//         \"AWS\"\r\n//     ]\r\n// }\r\n// {\r\n//     \"title\": \"Eight\",\r\n//     \"description\": \"Eight Desc\",\r\n//     \"tags\": [\r\n//         \"Eight\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n{\r\n    \"title\": \"Seven\",\r\n    \"description\": \"Seven Desc\",\r\n    \"tags\": [\r\n        \"Seven\",\r\n        \"IT\"\r\n    ] \r\n}\r\n// {\r\n//     \"title\": \"Angualar\",\r\n//     \"description\": \"Angualar Desc\",\r\n//     \"tags\": [\r\n//         \"Angular\",\r\n//         \"ng\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"React\",\r\n//     \"description\": \"React Desc\"\r\n//     // Worries 😯 \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"HTML\",\r\n//     \"description\": \"HTML Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"HTML\",\r\n//         \"Hyper Text Markup Language\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"React Native\",\r\n//     \"description\": \"RN Desc\",\r\n//     \"tags\": [\r\n//         \"RN\",\r\n//         \"React Native\",\r\n//         \"java developer\"\r\n//     ] // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, and Description and tags\r\n// }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:21:10 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 3,\n    \"title\": \"Seven\",\n    \"tags\": [\n        \"seven\",\n        \"it\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:51:10.9765748\",\n    \"lastModifiedDateTime\": \"2025-02-23T11:51:10.9765748\",\n    \"description\": \"Seven Desc\"\n}"
+								},
+								{
+									"name": "Create Posts by userId",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "// {\r\n//     \"title\": \"AWS\",\r\n//     \"description\": \"AWS Desc\",\r\n//     \"tags\": [\r\n//         \"AWS\"\r\n//     ]\r\n// }\r\n// {\r\n//     \"title\": \"Eight\",\r\n//     \"description\": \"Eight Desc\",\r\n//     \"tags\": [\r\n//         \"Eight\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Seven\",\r\n//     \"description\": \"Seven Desc\",\r\n//     \"tags\": [\r\n//         \"Seven\",\r\n//         \"IT\"\r\n//     ] \r\n// }\r\n{\r\n    \"title\": \"Angualar\",\r\n    \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}\r\n// {\r\n//     \"title\": \"React\",\r\n//     \"description\": \"React Desc\"\r\n//     // Worries 😯 \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"Python\",\r\n//     \"description\": \"Python Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"Python\",\r\n//         \"Py\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"HTML\",\r\n//     \"description\": \"HTML Desc\",\r\n//     // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, Description and tags // but not using in Post Entity\r\n//     \"tags\": [\r\n//         \"HTML\",\r\n//         \"Hyper Text Markup Language\"\r\n//     ] \r\n// }\r\n// {\r\n//     \"title\": \"React Native\",\r\n//     \"description\": \"RN Desc\",\r\n//     \"tags\": [\r\n//         \"RN\",\r\n//         \"React Native\",\r\n//         \"java developer\"\r\n//     ] // Even if Tags are passed we are not Taking it AS Post only contains id(PK, non-Auto Increment), title, and Description and tags\r\n// }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:23:00 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"title\": \"Angualar\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:53:00.9520446\",\n    \"lastModifiedDateTime\": \"2025-02-23T11:53:00.9520446\",\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "get Post By Id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get Post By Id [Present]",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/5",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"5"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 17 Jan 2025 05:04:24 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 5,\n    \"title\": \"Angualar\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "UpdatePosts by userId Copy",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/4/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"4",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Posts by userId Copy",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/4/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"4",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:27:57 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"title\": \"Angualarr\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n    \"lastModifiedDateTime\": \"2025-02-23T11:57:57.132479\",\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "UpdatePosts by userId",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    // \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/4/user/2",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"4",
+										"user",
+										"2"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create Posts by userId Copy",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Angualarr\",\r\n    // \"description\": \"Angualar Desc\",\r\n    \"tags\": [\r\n        \"Angular\",\r\n        \"ng\",\r\n        \"IT\"\r\n    ] \r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/4/user/2",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"4",
+												"user",
+												"2"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:33:10 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 4,\n    \"title\": \"Angualarr\",\n    \"tags\": [\n        \"angular\",\n        \"ng\",\n        \"it\"\n    ],\n    \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n    \"lastModifiedDateTime\": \"2025-02-23T12:03:10.8890318\",\n    \"description\": \"Angualar Desc\"\n}"
+								}
+							]
+						},
+						{
+							"name": "delete By Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/3",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"3"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "delete By Id",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/5",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"5"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 16 Jan 2025 13:52:50 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "get Post By title id",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/title?value=pyth",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"title"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "pyth"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get Post By title id",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/title?value=ang",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"title"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "ang"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:37:42 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 4,\n        \"title\": \"Angualarr\",\n        \"tags\": [\n            \"angular\",\n            \"ng\",\n            \"it\"\n        ],\n        \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n        \"lastModifiedDateTime\": \"2025-02-23T12:03:10.889032\",\n        \"description\": \"Angualar Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "get Post By tags name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseurl}}/posts/tag?value=python",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"tag"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "python"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get Post By tags name",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseurl}}/posts/tag?value=AWS",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"tag"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "AWS"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:38:21 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"AWS\",\n        \"tags\": [\n            \"aws\"\n        ],\n        \"createdDateTime\": \"2025-02-23T11:49:45.619933\",\n        \"lastModifiedDateTime\": \"2025-02-23T11:49:45.619933\",\n        \"description\": \"AWS Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Search",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/posts/search?value=ng",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts",
+										"search"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "ng"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Search",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/posts/search?value=ng",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts",
+												"search"
+											],
+											"query": [
+												{
+													"key": "value",
+													"value": "ng"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 23 Feb 2025 06:39:49 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 4,\n        \"title\": \"Angualarr\",\n        \"tags\": [\n            \"angular\",\n            \"ng\",\n            \"it\"\n        ],\n        \"createdDateTime\": \"2025-02-23T11:53:00.952045\",\n        \"lastModifiedDateTime\": \"2025-02-23T12:03:10.889032\",\n        \"description\": \"Angualar Desc\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Pagination getAllPosts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/posts?page=0&sortDirection=DESC&sortBy=title&size=4",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortDirection",
+											"value": "DESC"
+										},
+										{
+											"key": "sortBy",
+											"value": "title"
+										},
+										{
+											"key": "size",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Pagination getAllPosts",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseurl}}/posts?page=0&sortDirection=DESC&sortBy=title&size=4",
+											"host": [
+												"{{baseurl}}"
+											],
+											"path": [
+												"posts"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "0"
+												},
+												{
+													"key": "sortDirection",
+													"value": "DESC"
+												},
+												{
+													"key": "sortBy",
+													"value": "title"
+												},
+												{
+													"key": "size",
+													"value": "4"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 29 Jan 2025 14:43:09 GMT"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=60"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"React Native\",\n            \"tags\": [\n                \"react native\",\n                \"rn\",\n                \"java developer\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"RN Desc\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"HTML\",\n            \"tags\": [\n                \"hyper text markup language\",\n                \"html\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"HTML Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 4,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 5,\n    \"totalPages\": 2,\n    \"size\": 4,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 4,\n    \"empty\": false\n}"
+								}
+							]
+						}
+					]
 				}
 			]
 		}

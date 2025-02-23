@@ -46,8 +46,9 @@ public class Post {
     @LastModifiedDate
     private LocalDateTime lastModifiedDateTime;
 
-        //Adding Many Posts to One User
-        @ManyToOne
-        @JoinColumn(name = "user_id")
-        private User user;
+    // Adding Many Posts to One User
+    // Foreign key So User is Parent Class of this property
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

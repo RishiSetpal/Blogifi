@@ -4,8 +4,10 @@ import com.example.Blogifi.dtos.postDto.PostRequestDto;
 import com.example.Blogifi.dtos.postDto.PostResponseDto;
 import com.example.Blogifi.enteties.Post;
 import com.example.Blogifi.enteties.Tag;
+import com.example.Blogifi.enteties.User;
 import com.example.Blogifi.repositories.PostRepository;
 import com.example.Blogifi.repositories.TagRepository;
+import com.example.Blogifi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,19 +36,27 @@ public class PostService {
     @Autowired
     final private TagRepository tagRepository;
 
-    public PostService(PostRepository postRepository, TagRepository tagRepository) {
+    @Autowired
+    final private UserService userService;
+    final private UserRepository userRepository;
+
+    public PostService(PostRepository postRepository, TagRepository tagRepository, UserService userService, UserRepository userRepository) {
         this.postRepository = postRepository;
         this.tagRepository = tagRepository;
+        this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     //Returns previously added tag with its id orElseGet( tagRepositoy.save(newTag) );
     private Set<Tag> persistTags(Set<Tag> tags) {
         return tags.stream()
-                .map(tag -> tagRepository.findByName(tag.getName()).orElseGet(()-> tagRepository.save(tag)))
+                .map(tag -> tagRepository.findByName(tag.getName()).orElseGet(() -> tagRepository.save(tag)))
                 .collect(Collectors.toSet());
     }
 
-    public Post createPost(Post post) {
+    public Post createPost(Post post, int userId) {
+        User user = userService.getById(userId); // get user by I'd
+        post.setUser(user); // set user in post // So that post will be created with user ID and user added in database with post.
         post.setTags(persistTags(post.getTags()));
         return postRepository.save(post);
     }
@@ -60,11 +70,23 @@ public class PostService {
         return postRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User With " + id + "Not Found"));
     }
 
-    public Post Update(int id, Post post) {
-        getpost(id);
-        post.setId(id);
-        post.setTags(persistTags(post.getTags()));
-        return postRepository.save(post);
+    // Previously: we were taking previousPostId and Replacing with the newPostObject
+    // Now we want to getUserObjectById and
+    public Post Update(int id, Post post, int userId) {
+        User user = userService.getById(userId);
+        Post existingPost = user.getPosts().stream()
+                .filter(dbUserPosts -> dbUserPosts.getId() == id).findFirst()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User With " + id + "Not Found"));
+        if (post.getTitle() != null) {
+            existingPost.setTitle(post.getTitle());
+        }
+        if (post.getDescription() != null) {
+            existingPost.setDescription(post.getDescription());
+        }
+        if (post.getTags() != null){
+            existingPost.setTags(persistTags(post.getTags()));
+        }
+        return postRepository.save(existingPost);
     }
 
     // If we Directly Delete by ID then

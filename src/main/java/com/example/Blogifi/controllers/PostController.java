@@ -54,10 +54,10 @@ public class PostController {
             @ApiResponse(responseCode = "201", description = "Post successfully created"),
             @ApiResponse(responseCode = "400", description = "Invalid input")
     })
-    @PostMapping("")
-    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto) {
-        Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto));
-        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
+    @PostMapping("/user/{userId}")
+    public ResponseEntity<PostResponseDto> createPost(@RequestBody PostRequestDto postRequestDto, @PathVariable int userId) {
+        Post postResponse = postService.createPost(postService.ConvertToPost(postRequestDto), userId);
+        return ResponseEntity.ok(postService.ConvertToPostResponse(postResponse));
     }
 
     @Operation(summary = "Get post by ID", description = "Retrieve a post by its ID.")
@@ -68,7 +68,7 @@ public class PostController {
     // PathParam - /@PathVarible
     @GetMapping("/{id}")
     public ResponseEntity<PostResponseDto> GetPostById(@PathVariable int id) {
-        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postService.getpost(id)), HttpStatus.CREATED);
+        return ResponseEntity.ok(postService.ConvertToPostResponse(postService.getpost(id)));
     }
 
     @Operation(summary = "Update post by ID", description = "Update the post with the given ID.")
@@ -77,17 +77,18 @@ public class PostController {
             @ApiResponse(responseCode = "404", description = "Post not found")
     })
     // Path Param - @PathVariable
-    @PutMapping("/{id}")
-    public ResponseEntity<String> UpdatePostById(@PathVariable int id, @RequestBody Post post) {
-        postService.Update(id, post);
-        return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED);
+    @PutMapping("/{id}/user/{userId}")
+    public ResponseEntity<PostResponseDto> UpdatePostById(@PathVariable int id, @PathVariable int userId, @RequestBody Post post) {
+        Post updatedPost = postService.Update(id, post, userId);
+        //return new ResponseEntity<>(postService.ConvertToPostResponse(updatedPost), HttpStatus.CREATED);
+        return ResponseEntity.ok(postService.ConvertToPostResponse(updatedPost));
     }
 
     // Additional using QueryParam - ?id=@RequestParam
     @PutMapping
-    public ResponseEntity<String> UpdatePostByIdQuery(@RequestParam int id, @RequestBody Post post) {
-        postService.Update(id, post);
-        return new ResponseEntity<>("Post Updated Successfully", HttpStatus.CREATED);
+    public ResponseEntity<PostResponseDto> UpdatePostByIdQuery(@RequestParam int id, @RequestParam int userId, @RequestBody Post post) {
+        Post updatedPost = postService.Update(id, post, userId);
+        return ResponseEntity.ok(postService.ConvertToPostResponse(updatedPost));
     }
 
     @Operation(summary = "Partially update post by ID", description = "Partially update a post with the provided details.")
@@ -95,20 +96,11 @@ public class PostController {
             @ApiResponse(responseCode = "200", description = "Successfully updated the post"),
             @ApiResponse(responseCode = "404", description = "Post not found")
     })
-    @PatchMapping("/{id}")
-    public ResponseEntity<PostResponseDto> UpdatePartialPostById(@PathVariable int id, @RequestBody PostRequestDto postRequestDto) {
-        Post oldpost = postService.getpost(id);
-        oldpost.setTitle(postRequestDto.getTitle() != null ? postRequestDto.getTitle() : oldpost.getTitle());
-        oldpost.setDescription(postRequestDto.getDescription() != null ? postRequestDto.getTitle() : oldpost.getDescription());
-        oldpost.setTags(!postRequestDto.getTags().isEmpty()
-                ?
-                postRequestDto.getTags()
-                        .stream()
-                        .map(name -> new Tag(name))
-                        .collect(Collectors.toSet())
-                : oldpost.getTags());
-        Post postResponse = postService.Update(id, oldpost);
-        return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
+    @PatchMapping("/{id}/user/{userId}")
+    public ResponseEntity<PostResponseDto> UpdatePartialPostById(@PathVariable int id, @PathVariable int userId, @RequestBody PostRequestDto postRequestDto) {
+        Post postResponse = postService.Update(id, postService.ConvertToPost(postRequestDto), userId);
+        //return new ResponseEntity<PostResponseDto>(postService.ConvertToPostResponse(postResponse), HttpStatus.CREATED);
+        return ResponseEntity.ok(postService.ConvertToPostResponse(postResponse));
     }
 
     @Operation(summary = "Delete post by ID", description = "Delete a post by its ID.")
@@ -119,7 +111,7 @@ public class PostController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable int id) {
         postService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok("");
     }
 
     @Operation(summary = "Get posts by title", description = "Retrieve posts by the given title.")
