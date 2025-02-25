@@ -6,8 +6,23 @@ spring:
   profiles:
     active: temp
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rishisetpal123@gmail.com
+    password: rbye kzia ufyn mesk
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 # For Showing Message #Where - For Showing Additional Message after new ResponseStatusException(HttpStatus.NOT_FOUND,"User With " +id+ "Not Found"))
 server:
   port: 8080
   error:
     include-message: always
+
+

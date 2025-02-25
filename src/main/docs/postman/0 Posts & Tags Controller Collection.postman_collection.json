@@ -8992,6 +8992,102 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Part20 Email",
+			"item": [
+				{
+					"name": "Email Sent",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/email/sent?to=rishisetpal@gmail.com&subject=Test&body=Testing",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"email",
+								"sent"
+							],
+							"query": [
+								{
+									"key": "to",
+									"value": "rishisetpal@gmail.com"
+								},
+								{
+									"key": "subject",
+									"value": "Test"
+								},
+								{
+									"key": "body",
+									"value": "Testing"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Email/sent",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/email/sent?to=rishisetpal@gmail.com&subject=Test&body=Testing",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"email",
+										"sent"
+									],
+									"query": [
+										{
+											"key": "to",
+											"value": "rishisetpal@gmail.com"
+										},
+										{
+											"key": "subject",
+											"value": "Test"
+										},
+										{
+											"key": "body",
+											"value": "Testing"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 02:45:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Email sent Successfully torishisetpal@gmail.com"
+						}
+					]
+				}
+			]
 		}
 	]
 }
