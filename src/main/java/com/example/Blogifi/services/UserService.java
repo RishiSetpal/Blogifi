@@ -3,6 +3,7 @@ package com.example.Blogifi.services;
 import com.example.Blogifi.dtos.userDto.UserPartialRequestDto;
 import com.example.Blogifi.dtos.userDto.UserRequestDto;
 import com.example.Blogifi.dtos.userDto.UserResponseDto;
+import com.example.Blogifi.enteties.Post;
 import com.example.Blogifi.enteties.User;
 import com.example.Blogifi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 @Service
 public class UserService {
     @Autowired
     UserRepository userRepository;
+    PostService postService;
 
     public User create(User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent()) {
@@ -50,7 +55,13 @@ public class UserService {
     }
 
     public void delete(int id) {
-        getById(id);
+        User user = getById(id);
+        ArrayList<Post> postsCopy = new ArrayList<>(user.getPosts());
+        for (Post post : postsCopy) {
+            postService.delete(post.getId(), user.getId());
+            user.getPosts().remove(post);
+        }
+        userRepository.save(user);
         userRepository.deleteById(id);
     }
 

@@ -5980,7 +5980,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"Rishi\",\r\n    \"password\": \"Rishi123\",\r\n    \"email\": \"rishi@gmail.comm\"\r\n}",
+									"raw": "// {\r\n//     \"username\": \"Rishi_Setpal\",\r\n//     \"password\": \"Rishi123\",\r\n//     \"email\": \"rishisetpal@gmail.com\"\r\n// }\r\n{\r\n    \"username\": \"Bhavika_Setpal\",\r\n    \"password\": \"Bhavika123\",\r\n    \"email\": \"bhavikasetpal123@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5988,13 +5988,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseurl}}/users/1",
+									"raw": "{{baseurl}}/users/2",
 									"host": [
 										"{{baseurl}}"
 									],
 									"path": [
 										"users",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -8988,6 +8988,32 @@
 									"body": "{\n    \"content\": [\n        {\n            \"id\": 1,\n            \"title\": \"React Native\",\n            \"tags\": [\n                \"react native\",\n                \"rn\",\n                \"java developer\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"RN Desc\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Python\",\n            \"tags\": [\n                \"pyy\",\n                \"python\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"Python Desc\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"HTML\",\n            \"tags\": [\n                \"hyper text markup language\",\n                \"html\"\n            ],\n            \"createdDateTime\": null,\n            \"lastModifiedDateTime\": null,\n            \"description\": \"HTML Desc\"\n        }\n    ],\n    \"pageable\": {\n        \"pageNumber\": 0,\n        \"pageSize\": 4,\n        \"sort\": {\n            \"empty\": false,\n            \"sorted\": true,\n            \"unsorted\": false\n        },\n        \"offset\": 0,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"last\": false,\n    \"totalElements\": 5,\n    \"totalPages\": 2,\n    \"size\": 4,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"sorted\": true,\n        \"unsorted\": false\n    },\n    \"first\": true,\n    \"numberOfElements\": 4,\n    \"empty\": false\n}"
 								}
 							]
+						},
+						{
+							"name": "http://localhost:7777/Blogifi/api/images/posts/jS4mRIJL9NXpnHjsr1_I-00Di1ncrRVLNUf_WwlkiFI=.png",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:7777/Blogifi/api/images/posts/jS4mRIJL9NXpnHjsr1_I-00Di1ncrRVLNUf_WwlkiFI=.png",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "7777",
+									"path": [
+										"Blogifi",
+										"api",
+										"images",
+										"posts",
+										"jS4mRIJL9NXpnHjsr1_I-00Di1ncrRVLNUf_WwlkiFI=.png"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -9023,6 +9049,83 @@
 									"key": "body",
 									"value": "Testing"
 								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Email/sent",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseurl}}/email/sent?to=rishisetpal@gmail.com&subject=Test&body=Testing",
+									"host": [
+										"{{baseurl}}"
+									],
+									"path": [
+										"email",
+										"sent"
+									],
+									"query": [
+										{
+											"key": "to",
+											"value": "rishisetpal@gmail.com"
+										},
+										{
+											"key": "subject",
+											"value": "Test"
+										},
+										{
+											"key": "body",
+											"value": "Testing"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 25 Feb 2025 02:45:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Email sent Successfully torishisetpal@gmail.com"
+						}
+					]
+				},
+				{
+					"name": "Sent Promotional to all User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/email/send-promotion",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"email",
+								"send-promotion"
 							]
 						}
 					},
